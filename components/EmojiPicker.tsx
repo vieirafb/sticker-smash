@@ -9,17 +9,19 @@ type Props = PropsWithChildren<{
 
 export default function EmojiPicker({ isVisible, children, onClose }: Props) {
   return (
-    <Modal animationType="slide" transparent={true} visible={isVisible}>
-      <View style={styles.modalContent}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>Selecione uma figurinha</Text>
-          <Pressable onPress={onClose}>
-            <MaterialIcons name="close" color="#fff" size={22}/>
-          </Pressable>
+    <View pointerEvents="none">
+      <Modal transparent={true} visible={isVisible} removeClippedSubviews={false}>
+        <View style={styles.modalContent}>
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>Selecione uma figurinha</Text>
+            <Pressable onPress={onClose}>
+              <MaterialIcons name="close" color="#fff" size={22}/>
+            </Pressable>
+          </View>
+          {children}
         </View>
-        {children}
-      </View>
-    </Modal>
+      </Modal>
+    </View>
   );
 }
 
