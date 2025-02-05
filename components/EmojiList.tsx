@@ -4,10 +4,9 @@ import { Image, type ImageSource } from 'expo-image';
 
 type Props = {
   onSelect: (image: ImageSource) => void;
-  onCloseModal: () => void;
 };
 
-export default function EmojiList({ onSelect, onCloseModal }: Props) {
+export default function EmojiList({ onSelect }: Props) {
   const [emoji] = useState<ImageSource[]>([
     require("../assets/images/emoji1.png"),
     require("../assets/images/emoji2.png"),
@@ -24,10 +23,7 @@ export default function EmojiList({ onSelect, onCloseModal }: Props) {
       data={emoji}
       contentContainerStyle={styles.listContainer}
       renderItem={({ item, index }) => (
-        <Pressable onPress={() => {
-          onSelect(item);
-          onCloseModal();
-        }}>
+        <Pressable onPress={() => onSelect(item)}>
           <Image source={item} key={index} style={styles.image}/>
         </Pressable>
       )}

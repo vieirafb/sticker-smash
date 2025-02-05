@@ -49,6 +49,11 @@ export default function Index() {
 
   const onCloseModal = () => setIsModalVisible(false);
 
+  const onSelectEmoji = (item: ImageSource) => {
+    setPickedEmoji(item);
+    onCloseModal();
+  }
+
   const onSaveImageAsync = async () => {
     if (Platform.OS !== 'web') {
       try {
@@ -106,7 +111,7 @@ export default function Index() {
         </View>
       )}
       <EmojiPicker isVisible={isModalVisible} onClose={onCloseModal}>
-        <EmojiList onSelect={setPickedEmoji} onCloseModal={onCloseModal}></EmojiList>
+        <EmojiList onSelect={onSelectEmoji}></EmojiList>
       </EmojiPicker>
     </GestureHandlerRootView>
   );
